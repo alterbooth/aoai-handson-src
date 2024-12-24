@@ -42,6 +42,7 @@ param openAiGpt35Turbo16kDeploymentName string = 'gpt-35-turbo-16k-deploy'
 param openAiGpt4DeploymentName string = ''
 param openAiGpt432kDeploymentName string = ''
 param openAiApiVersion string = '2023-05-15'
+param openAiGpt4ominiDeploymentName string = 'gpt-4o-mini-deploy'
 
 
 param formRecognizerServiceName string = ''
@@ -184,6 +185,7 @@ module backend 'core/host/containerapps.bicep' = {
     azureOpenaiGpt4Deployment: ''
     azureOpenaiGpt432kDeployment: ''
     azureOpenaiApiVersion: '2023-05-15'
+    azureOpenaiGpt4ominiDeployment: openAiGpt4ominiDeploymentName
     azureCosmosdbContainer: cosmosDbContainerName
     azureCosmosdbDatabase: cosmosDbDatabaseName
     azureCosmosdbEndpoint: cosmosDb.outputs.endpoint
@@ -207,7 +209,7 @@ module openAi 'core/ai/cognitiveservices.bicep' = {
         model: {
           format: 'OpenAI'
           name: 'gpt-35-turbo'
-          version: '0613'
+          version: '0125'
         }
         sku: {
           name: 'Standard'
@@ -223,6 +225,18 @@ module openAi 'core/ai/cognitiveservices.bicep' = {
         }
         sku: {
           name: 'Standard'
+          capacity: 20
+        }
+      }
+      {
+        name: openAiGpt4ominiDeploymentName
+        model: {
+          format: 'OpenAI'
+          name: 'gpt-4o-mini'
+          version: '2024-07-18'
+        }
+        sku: {
+          name: 'GlobalStandard'
           capacity: 20
         }
       }
@@ -642,6 +656,7 @@ output AZURE_OPENAI_GPT_35_TURBO_16K_DEPLOYMENT string = openAiGpt35Turbo16kDepl
 output AZURE_OPENAI_GPT_4_DEPLOYMENT string = openAiGpt4DeploymentName
 output AZURE_OPENAI_GPT_4_32K_DEPLOYMENT string = openAiGpt432kDeploymentName
 output AZURE_OPENAI_API_VERSION string = openAiApiVersion
+output AZURE_OPENAI_GPT_4O_MINI_DEPLOYMENT string = openAiGpt4ominiDeploymentName
 
 output AZURE_FORMRECOGNIZER_SERVICE string = formRecognizer.outputs.name
 output AZURE_FORMRECOGNIZER_RESOURCE_GROUP string = formRecognizerResourceGroup.name

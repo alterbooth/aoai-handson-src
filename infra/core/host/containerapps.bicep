@@ -42,6 +42,7 @@ param azureOpenaiApiVersion string = '' //       AZURE_OPENAI_API_VERSION: '2023
 param azureCosmosdbContainer string = '' //       AZURE_COSMOSDB_CONTAINER: cosmosDbContainerName
 param azureCosmosdbDatabase string = '' //       AZURE_COSMOSDB_DATABASE: cosmosDbDatabaseName
 param azureCosmosdbEndpoint string = '' //       AZURE_COSMOSDB_ENDPOINT: cosmosDb.outputs.endpoint
+param azureOpenaiGpt4ominiDeployment string = '' //       AZURE_OPENAI_GPT_4O_MINI_DEPLOYMENT: openAiGpt4OminiDeploymentName
 
 
 
@@ -139,6 +140,10 @@ resource containerApp 'Microsoft.App/containerApps@2023-05-01' = {
             {
               name: 'AZURE_OPENAI_API_VERSION'
               value: azureOpenaiApiVersion
+            }
+            {
+              name: 'AZURE_OPENAI_GPT_4O_MINI_DEPLOYMENT'
+              value: azureOpenaiGpt4ominiDeployment
             }
             {
               name: 'AZURE_COSMOSDB_CONTAINER'

@@ -110,6 +110,9 @@ source quesion: {user_question}
 
         # STEP 3: Generate a contextual and content specific answer using the search results and chat history
         # GPT-3.5 Turbo (4k/16k)
+        if "gpt-4o-mini" in chat_model:
+            completion_model = chat_model
+            # completion_model = "gpt-35-turbo-instruct" # for future use
         if "gpt-3.5-turbo" in chat_model:
             completion_model = chat_model
             # completion_model = "gpt-35-turbo-instruct" # for future use
