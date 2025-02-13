@@ -217,18 +217,6 @@ module openAi 'core/ai/cognitiveservices.bicep' = {
         }
       }
       {
-        name: openAiGpt35Turbo16kDeploymentName
-        model: {
-          format: 'OpenAI'
-          name: 'gpt-35-turbo-16k'
-          version: '0613'
-        }
-        sku: {
-          name: 'Standard'
-          capacity: 20
-        }
-      }
-      {
         name: openAiGpt4ominiDeploymentName
         model: {
           format: 'OpenAI'
